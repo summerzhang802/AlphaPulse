@@ -1,0 +1,101 @@
+export const watchlistData = [
+  { ticker: "AAPL", name: "Apple Inc.", newsCount: 5, riskIndex: 28, action: "Monitor" as const },
+  { ticker: "TSLA", name: "Tesla Inc.", newsCount: 8, riskIndex: 72, action: "Reduce Risk" as const },
+  { ticker: "MSFT", name: "Microsoft Corp.", newsCount: 3, riskIndex: 15, action: "Hold" as const },
+  { ticker: "AMZN", name: "Amazon.com Inc.", newsCount: 4, riskIndex: 45, action: "Monitor" as const },
+  { ticker: "GOOGL", name: "Alphabet Inc.", newsCount: 2, riskIndex: 22, action: "Hold" as const },
+  { ticker: "NVDA", name: "NVIDIA Corp.", newsCount: 6, riskIndex: 58, action: "Monitor" as const },
+];
+
+export const newsData = [
+  {
+    id: 1,
+    headline: "Apple announces new AI features for iPhone 17 lineup",
+    ticker: "AAPL",
+    source: "Reuters",
+    time: "2h ago",
+    summary: "Apple revealed a suite of AI-powered features coming to the iPhone 17, including advanced photo editing and a smarter Siri.",
+    whyItMatters: "This positions Apple competitively in the AI race, potentially driving upgrades and boosting revenue from services.",
+    impact: "Bullish" as const,
+    impactLevel: "Medium" as const,
+    confidence: "High" as const,
+    suggestedAction: "Hold" as const,
+  },
+  {
+    id: 2,
+    headline: "Tesla faces production delays at Berlin Gigafactory",
+    ticker: "TSLA",
+    source: "Bloomberg",
+    time: "3h ago",
+    summary: "Tesla's Berlin factory is experiencing supply chain issues, causing a 15% reduction in Model Y production targets.",
+    whyItMatters: "Production delays directly impact revenue and could cause Tesla to miss quarterly delivery estimates.",
+    impact: "Bearish" as const,
+    impactLevel: "High" as const,
+    confidence: "High" as const,
+    suggestedAction: "Monitor" as const,
+  },
+  {
+    id: 3,
+    headline: "Microsoft cloud revenue beats expectations by 12%",
+    ticker: "MSFT",
+    source: "CNBC",
+    time: "5h ago",
+    summary: "Microsoft Azure grew 29% year-over-year, exceeding analyst expectations and driving total cloud revenue past $35B.",
+    whyItMatters: "Strong cloud growth validates Microsoft's AI strategy and enterprise positioning.",
+    impact: "Bullish" as const,
+    impactLevel: "High" as const,
+    confidence: "High" as const,
+    suggestedAction: "Hold" as const,
+  },
+  {
+    id: 4,
+    headline: "NVIDIA warns of export restrictions impact on Q3 guidance",
+    ticker: "NVDA",
+    source: "Financial Times",
+    time: "6h ago",
+    summary: "NVIDIA lowered Q3 guidance by $1.5B citing new export restrictions to China affecting AI chip sales.",
+    whyItMatters: "Export restrictions limit NVIDIA's largest growth market and could slow the AI investment cycle.",
+    impact: "Bearish" as const,
+    impactLevel: "High" as const,
+    confidence: "Medium" as const,
+    suggestedAction: "Reduce Risk" as const,
+  },
+  {
+    id: 5,
+    headline: "Amazon Prime membership reaches 250 million globally",
+    ticker: "AMZN",
+    source: "WSJ",
+    time: "8h ago",
+    summary: "Amazon announced Prime membership hit a new milestone, with strong growth in emerging markets.",
+    whyItMatters: "Higher Prime membership drives recurring revenue and increases customer lifetime value.",
+    impact: "Bullish" as const,
+    impactLevel: "Medium" as const,
+    confidence: "High" as const,
+    suggestedAction: "Hold" as const,
+  },
+];
+
+export const dailyBriefData = [
+  {
+    summary: "Tech earnings season kicks off strong with Microsoft beating estimates",
+    stock: "MSFT",
+    signal: "Bullish" as const,
+  },
+  {
+    summary: "New China export controls could reshape the AI chip market",
+    stock: "NVDA",
+    signal: "Bearish" as const,
+  },
+  {
+    summary: "Consumer spending remains resilient, boosting retail and e-commerce",
+    stock: "AMZN",
+    signal: "Bullish" as const,
+  },
+];
+
+export const decisionLogData = [
+  { id: 1, ticker: "AAPL", action: "Buy" as const, reason: "Strong AI roadmap and consistent dividend growth", date: "2026-03-08" },
+  { id: 2, ticker: "TSLA", action: "Set Alert" as const, reason: "Waiting for production numbers to stabilize before adding", date: "2026-03-07" },
+  { id: 3, ticker: "MSFT", action: "Hold" as const, reason: "Cloud revenue growth exceeding expectations", date: "2026-03-06" },
+  { id: 4, ticker: "NVDA", action: "Sell" as const, reason: "Export restriction concerns, taking profits at current levels", date: "2026-03-05" },
+];
