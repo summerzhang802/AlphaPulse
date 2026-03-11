@@ -39,3 +39,7 @@ node_modules/
 
 # Logs
 *.log
+
+*.db
+*.sqlite
+*.sqlite3
