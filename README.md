@@ -323,6 +323,6 @@ Possible future enhancements include:
 
 ## Author
 
-Tianyue Zhang, Fenglin Lei
+Tianyue Zhang(summer), Fenglin Lei(triston)
 
 AlphaPulse was created as a course project demonstrating how AI and modern web technologies can simplify financial information for beginner investors.
