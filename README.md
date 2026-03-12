@@ -1,73 +1,328 @@
-# Welcome to your Lovable project
+# AlphaPulse – AI Stock News Simplifier for Beginners
 
-## Project info
+## Project Overview
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**AlphaPulse** is a beginner-friendly web application designed to help new investors understand stock news and turn complex financial headlines into clear, actionable insights.
 
-## How can I edit this code?
+Financial news can be difficult for beginners to interpret. Many articles contain technical language, conflicting signals, or overwhelming information. AlphaPulse simplifies this process by using AI to analyze stock news headlines and explain their potential market impact in plain language.
 
-There are several ways of editing your application.
+The application summarizes news and classifies its sentiment (Bullish, Bearish, or Neutral), helping beginner investors quickly understand what the news might mean for their watchlist.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Problem Statement
 
-Changes made via Lovable will be committed automatically to this repo.
+Beginner investors often struggle to interpret financial news and translate it into structured insights or informed actions. News headlines may contain complex financial terminology, and beginners may not know whether the news indicates positive, negative, or neutral impact on a stock.
 
-**Use your preferred IDE**
+Without a system to track watchlists, interpret news, and record decisions, investment decisions become inconsistent and difficult to review.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+AlphaPulse aims to solve this problem by combining a simple user interface, AI analysis, and structured data tracking.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## Goals
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+The main goals of AlphaPulse are:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+* Simplify stock news into beginner-friendly explanations
+* Classify news sentiment as **Bullish**, **Bearish**, or **Neutral**
+* Allow users to maintain a **personal watchlist**
+* Provide a **daily brief** of key news related to tracked stocks
+* Help users record investment decisions through a **Decision Log**
+* Demonstrate how AI can assist financial information interpretation
 
-# Step 3: Install the necessary dependencies.
-npm i
+This application focuses on educational insights rather than investment advice.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+---
+
+## Target Users
+
+AlphaPulse is designed for beginner investors who:
+
+* Want to understand stock news quickly
+* Have limited financial background
+* Track a small number of stocks
+* Spend only a few minutes per day reviewing market updates
+
+Example user personas include:
+
+**Persona A – Beginner Investor**
+
+* Just starting to invest
+* Reads headlines but struggles to interpret them
+
+**Persona B – Casual Investor**
+
+* Owns a few stocks
+* Wants to know if today's news matters for their portfolio
+
+---
+
+## Key Features
+
+### 1. Watchlist Tracking
+
+Users can track selected stocks and view:
+
+* stock ticker
+* company name
+* number of related news articles
+* risk index
+* suggested action (Monitor / Hold / Reduce Risk)
+
+---
+
+### 2. Daily Brief
+
+The Daily Brief highlights the most important news items for the user’s watchlist.
+Instead of showing dozens of headlines, the app focuses on **3 key insights per day** to reduce information overload.
+
+---
+
+### 3. AI News Simplifier
+
+The AI News Simplifier allows users to input:
+
+* a stock ticker
+* a news headline
+
+The system uses a large language model to generate:
+
+* **Summary** – simplified explanation of the news
+* **Impact classification** – Bullish / Bearish / Neutral
+
+Example output:
+
+Summary
+
+> Apple reported stronger-than-expected earnings driven by high iPhone demand.
+
+Impact
+
+> Bullish
+
+This helps beginner investors quickly understand the significance of news events.
+
+---
+
+### 4. Investment Evaluator
+
+The Investment Evaluator allows users to simulate how a small investment (e.g., $1000) could be allocated based on risk preference.
+
+Users can choose:
+
+* conservative
+* balanced
+* aggressive
+
+The application generates a suggested portfolio allocation with explanations for each asset category.
+
+---
+
+### 5. Decision Log
+
+The Decision Log allows users to record investment actions, including:
+
+* Buy
+* Sell
+* Hold
+* Set Alert
+
+Each entry records:
+
+* stock ticker
+* action taken
+* reasoning
+* date
+
+This feature encourages reflective investing and helps users track their decision-making process.
+
+---
+
+## System Architecture
+
+The application follows a modern web architecture:
+
+User Interface (Frontend)
+↓
+REST API Requests
+↓
+FastAPI Backend
+↓
+Data Storage (SQLite)
+↓
+AI Processing (Groq LLM)
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React
+* TypeScript
+* Tailwind CSS
+* shadcn-ui
+* Vite
+
+### Backend
+
+* Python
+* FastAPI
+* SQLite database
+
+### AI Integration
+
+* Groq API
+* LLaMA 3.1 model
+
+### Deployment
+
+* Backend hosted on Render
+* Frontend developed with Lovable
+
+---
+
+## LLM Integration
+
+AlphaPulse integrates a large language model through the Groq API.
+
+The AI is used to:
+
+* analyze stock news headlines
+* generate simplified explanations
+* classify news sentiment
+
+Example prompt structure:
+
+```
+Ticker: AAPL
+Headline: Apple beats earnings expectations due to strong iPhone sales
 ```
 
-**Edit a file directly in GitHub**
+The model returns structured output:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+Summary: Apple reported stronger earnings due to strong iPhone demand.
+Impact: Bullish
+```
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Data Source
 
-## What technologies are used for this project?
+The application uses **SQLite** as its primary data storage.
 
-This project is built with:
+Stored data includes:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+* Watchlist items
+* Decision log entries
+* User interaction records
 
-## How can I deploy this project?
+SQLite was chosen because it is lightweight, easy to deploy, and suitable for prototype applications.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## Deployment
 
-Yes, you can!
+The backend service is deployed as a FastAPI web service.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Render automatically builds and deploys the application from GitHub.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Backend start command:
+
+```
+uvicorn main:app --host 0.0.0.0 --port $PORT
+```
+
+The frontend communicates with the backend through REST API endpoints.
+
+---
+
+## API Endpoints
+
+Examples of available endpoints:
+
+```
+GET /watchlist
+GET /decision_logs
+POST /decision_logs
+POST /ai_news
+```
+
+Example request:
+
+```
+POST /ai_news
+```
+
+Body:
+
+```
+{
+  "ticker": "AAPL",
+  "headline": "Apple beats earnings expectations due to strong iPhone sales"
+}
+```
+
+---
+
+## Evaluation Plan
+
+The application can be evaluated using usability testing.
+
+Users will complete tasks such as:
+
+* adding a stock to the watchlist
+* interpreting a news summary
+* recording an investment decision
+* generating a portfolio allocation
+
+Evaluation metrics include:
+
+* task completion time
+* clarity of explanations
+* usefulness of AI insights
+
+---
+
+## Ethics and Safety
+
+AlphaPulse does **not provide financial advice**.
+
+The AI-generated insights are designed for educational purposes only.
+
+Users should not rely solely on this application when making investment decisions.
+
+Financial markets involve risk, and investment outcomes are not guaranteed.
+
+---
+
+## Disclaimer
+
+This project is intended for educational and demonstration purposes only.
+
+The AI-generated insights are not investment recommendations and should not be considered financial advice.
+
+Always conduct independent research before making investment decisions.
+
+---
+
+## Future Improvements
+
+Possible future enhancements include:
+
+* real-time financial news integration
+* automated news scraping
+* portfolio tracking
+* sentiment trend analysis
+* personalized risk scoring
+* authentication system
+
+---
+
+## Author
+
+Tianyue Zhang, Fenglin Lei
+
+AlphaPulse was created as a course project demonstrating how AI and modern web technologies can simplify financial information for beginner investors.
