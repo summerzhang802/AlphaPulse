@@ -31,11 +31,12 @@ interface WatchlistItem {
 const Watchlist = () => {
   const [watchlistData, setWatchlistData] = useState<WatchlistItem[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const API_BASE = import.meta.env.VITE_API_URL;
+  
   useEffect(() => {
     const fetchWatchlist = async () => {
       try {
-        const response = await fetch("http://localhost:8000/watchlist");
+        const response = await fetch(`${API_BASE}/watchlist`);
         const data = await response.json();
         setWatchlistData(data);
       } catch (error) {

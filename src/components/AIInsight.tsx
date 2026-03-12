@@ -23,6 +23,7 @@ const AIInsight = () => {
   const [headline, setHeadline] = useState("");
   const [result, setResult] = useState<AIResult | null>(null);
   const [loading, setLoading] = useState(false);
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   const analyzeNews = async () => {
     if (!ticker || !headline) return;
@@ -31,7 +32,7 @@ const AIInsight = () => {
     setResult(null);
 
     try {
-      const response = await fetch("http://localhost:8000/ai_news", {
+      const response = await fetch(`${API_BASE}/ai_news`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

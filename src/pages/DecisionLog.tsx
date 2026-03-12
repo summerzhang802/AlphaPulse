@@ -41,13 +41,15 @@ const DecisionLog = () => {
   const [newReason, setNewReason] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     fetchEntries();
   }, []);
 
   const fetchEntries = async () => {
     try {
-      const response = await fetch("http://localhost:8000/decisions");
+      const response = await fetch(`${API_BASE}/decisions`);
       const data = await response.json();
       setEntries(data);
     } catch (error) {
@@ -61,7 +63,7 @@ const DecisionLog = () => {
     if (!newTicker || !newReason) return;
 
     try {
-      const response = await fetch("http://localhost:8000/decisions", {
+      const response = await fetch(`${API_BASE}/decisions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +89,7 @@ const DecisionLog = () => {
 
   const deleteEntry = async (id: number) => {
     try {
-      await fetch(`http://localhost:8000/decisions/${id}`, {
+      await fetch(`${API_BASE}/decisions/${id}`, {
         method: "DELETE",
       });
 
