@@ -4,6 +4,15 @@ from pydantic import BaseModel
 from database import init_db, get_connection
 from datetime import datetime
 
+from groq import Groq
+from dotenv import load_dotenv
+import os
+import json
+
+load_dotenv()
+
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
 app = FastAPI()
 
 app.add_middleware(
@@ -28,6 +37,10 @@ class DecisionLogRequest(BaseModel):
     action: str
     reason: str
 
+class NewsAIRequest(BaseModel):
+    ticker: str
+    headline: str
+    
 # @app.get("/")
 # def root():
 #     return {"message": "Backend is running"}
@@ -117,3 +130,47 @@ def delete_decision_log(entry_id: int):
         return {"message": "Entry not found"}
 
     return {"message": "Entry deleted successfully", "id": entry_id}
+
+
+@app.post("/ai_news")
+def ai_news(req: NewsAIRequest):
+    prompt = f"""
+You are helping a beginner investor understand stock news.
+
+Analyze this stock news headline and return ONLY valid JSON.
+
+Ticker: {req.ticker}
+Headline: {req.headline}
+
+Return this exact JSON format:
+{{
+  "summary": "one simple sentence for a beginner",
+  "impact": "Bullish"
+}}
+
+Rules:
+- impact must be exactly one of: Bullish, Bearish, Neutral
+- summary must be short and easy to understand
+- do not include markdown
+- do not include extra text
+"""
+
+    chat = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.2,
+    )
+
+    content = chat.choices[0].message.content
+
+    try:
+        parsed = json.loads(content)
+        return {
+            "summary": parsed.get("summary", "No summary available."),
+            "impact": parsed.get("impact", "Neutral")
+        }
+    except Exception:
+        return {
+            "summary": content,
+            "impact": "Neutral"
+        }
